@@ -13,9 +13,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@clang -g $(FLAGS) -o $@ $(SRC) Libft_extended/libft.a
-
-%.o: %.c
-	@clang $(FLAGS) $@ -c $<
+	@rm -r $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
