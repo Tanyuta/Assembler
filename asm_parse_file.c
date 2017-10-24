@@ -6,7 +6,7 @@
 /*   By: tprysiaz <tprysiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 21:26:28 by tprysiaz          #+#    #+#             */
-/*   Updated: 2017/10/16 20:24:25 by tprysiaz         ###   ########.fr       */
+/*   Updated: 2017/10/24 22:38:42 by tprysiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_file	*asm_parse_name_2(char *s, t_file *st, t_asm *as)
 {
 	char	*p;
 
-	while (st && as->flag_name != 1)
+	while (!as->error && st && as->flag_name != 1)
 	{
 		if ((p = ft_strchr(s, '\"')) > 0)
 		{
@@ -50,7 +50,7 @@ t_file	*asm_parse_name(char *s, t_file *st, t_asm *as)
 			return (st);
 		}
 		st = asm_parse_name_2(s, st, as);
-		if (as->flag_name != 1)
+		if (!as->error && as->flag_name != 1)
 			asm_error("No .name", st, as);
 	}
 	else
@@ -62,7 +62,7 @@ t_file	*asm_parse_comm_2(char *s, t_file *st, t_asm *as)
 {
 	char	*p;
 
-	while (st && as->flag_comm != 1)
+	while (!as->error && st && as->flag_comm != 1)
 	{
 		if ((p = ft_strchr(s, '\"')) > 0)
 		{
@@ -96,7 +96,7 @@ t_file	*asm_parse_comm(char *s, t_file *st, t_asm *as)
 			return (st);
 		}
 		st = asm_parse_comm_2(s, st, as);
-		if (as->flag_comm != 1)
+		if (!as->error && as->flag_comm != 1)
 			asm_error("No .comment", st, as);
 	}
 	else

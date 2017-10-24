@@ -6,7 +6,7 @@
 /*   By: tprysiaz <tprysiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 21:17:47 by tprysiaz          #+#    #+#             */
-/*   Updated: 2017/10/22 23:30:48 by tprysiaz         ###   ########.fr       */
+/*   Updated: 2017/10/24 22:10:57 by tprysiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	asm_rewrite_variable_in_data(t_asm *as)
 	t_label		*label;
 
 	st_var = as->variable;
-	while (st_var && st_var->variable)
+	while (!as->error && st_var && st_var->variable)
 	{
 		if ((label = search_label(as, st_var->variable)) > 0)
 		{

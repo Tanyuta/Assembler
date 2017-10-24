@@ -6,7 +6,7 @@
 /*   By: tprysiaz <tprysiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 21:40:13 by tprysiaz          #+#    #+#             */
-/*   Updated: 2017/10/23 21:02:56 by tprysiaz         ###   ########.fr       */
+/*   Updated: 2017/10/24 22:10:15 by tprysiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	asm_parse_program(char *s, t_file *st, t_asm *as)
 {
 	char	*p;
 
-	while (st && st->str && !as->error)
+	while (!as->error && st && st->str && !as->error)
 	{
 		s = (*st->str && TAB(st->str[0])) ? asm_trim(st->str) : st->str;
 		if (s[0] == COMMENT_CHAR || s[0] == '\0')
