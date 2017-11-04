@@ -64,7 +64,7 @@ int		index_list(t_asm *as)
 	return (i);
 }
 
-void	asm_validate_end_str(char *str, t_file *st)
+void	asm_validate_end_str(char *str, t_file *st, t_asm *as)
 {
 	if (str[0])
 	{
@@ -72,6 +72,6 @@ void	asm_validate_end_str(char *str, t_file *st)
 		if (str[0] == COMMENT_CHAR || str[0] == '\0')
 			return ;
 		else
-			asm_error("Lexical error", st, 0);
+			asm_error("Lexical error", st, as);
 	}
 }

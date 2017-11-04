@@ -37,7 +37,7 @@ void	asm_t_reg(t_asm *as, t_file *st, char *s)
 	if (!(s[0] >= '0' && s[0] <= '9'))
 		asm_error("Invalid parameter", st, as);
 	n = asm_atoi(s, st, as);
-	if (n < 0 || n > 99)
+	if ((n < 0 || n > 99) && !as->error)
 		asm_error("T_REG must be from 1 to REG_SIZE", st, as);
 	(!as->error) ? asm_coding_arg(as, n, 1) : 0;
 }

@@ -130,7 +130,9 @@ void	asm_rewrite_variable_in_data(t_asm *as)
 		}
 		else
 		{
+			write(1, RED, ft_strlen(RED));
 			write(1, "No such label - ", 16);
+			write(1, RESET, ft_strlen(RESET));
 			asm_error(st_var->variable, 0, as);
 			return ;
 		}

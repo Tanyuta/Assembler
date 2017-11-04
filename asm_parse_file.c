@@ -6,7 +6,7 @@
 /*   By: tprysiaz <tprysiaz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/15 21:26:28 by tprysiaz          #+#    #+#             */
-/*   Updated: 2017/10/24 22:38:42 by tprysiaz         ###   ########.fr       */
+/*   Updated: 2017/10/30 21:18:14 by tprysiaz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_file	*asm_parse_name_2(char *s, t_file *st, t_asm *as)
 			if ((ft_strlen(as->header->prog_name) + p - s) <= PROG_NAME_LENGTH)
 			{
 				ft_strncat(as->header->prog_name, s, p - s);
-				asm_validate_end_str(p + 1, st);
+				asm_validate_end_str(p + 1, st, as);
 			}
 			else
 				asm_error("Champion name too long (Max length 128)", 0, as);
@@ -45,7 +45,7 @@ t_file	*asm_parse_name(char *s, t_file *st, t_asm *as)
 	{
 		if (s[0] == '\"' && (as->flag_name = 1))
 		{
-			asm_validate_end_str(s + 1, st);
+			asm_validate_end_str(s + 1, st, as);
 			ft_strcpy(as->header->prog_name, "Default_name");
 			return (st);
 		}
@@ -70,7 +70,7 @@ t_file	*asm_parse_comm_2(char *s, t_file *st, t_asm *as)
 			if ((ft_strlen(as->header->comment) + p - s) <= COMMENT_LENGTH)
 			{
 				ft_strncat(as->header->comment, s, p - s);
-				asm_validate_end_str(p + 1, st);
+				asm_validate_end_str(p + 1, st, as);
 			}
 			else
 				asm_error("Champion comment too long (Max length 2048)", 0, as);
@@ -91,7 +91,7 @@ t_file	*asm_parse_comm(char *s, t_file *st, t_asm *as)
 	{
 		if (s[0] == '\"' && (as->flag_comm = 1))
 		{
-			asm_validate_end_str(s + 1, st);
+			asm_validate_end_str(s + 1, st, as);
 			ft_strcpy(as->header->comment, "Default_comment");
 			return (st);
 		}
@@ -124,7 +124,7 @@ void	asm_parse_name_comm(t_asm *as)
 			else
 				asm_error("Syntax error", st, as);
 		}
-		st = st->next;
+		(st) ? st = st->next : 0;
 	}
 	if (!as->error && as->flag_name == 1 && as->flag_comm == 1)
 		asm_parse_program(s, st, as);

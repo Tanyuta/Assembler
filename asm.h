@@ -86,7 +86,7 @@ t_label					*search_label(t_asm *as, char *str);
 char					*remove_comment_in_end(t_asm *as, char *s);
 char					*asm_trim(char *str);
 int						index_list(t_asm *as);
-void					asm_validate_end_str(char *str, t_file *st);
+void					asm_validate_end_str(char *str, t_file *st, t_asm *as);
 
 /*
 ** asm_parse_file.c
